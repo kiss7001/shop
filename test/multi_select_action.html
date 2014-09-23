@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>rosettastone</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<style type="text/css">
+		html,body {  }
+	</style>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    //
+		$( "#sel1tosel2" ).click(function() {
+
+			$("#sel1 option:selected").each(function(){
+				//console.log($(this).val());
+				$("#sel2").append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+				$(this).remove();
+			});
+
+			//-start select box sort-
+			var sort = $("#sel2>option").sort(
+				function(a,b) {
+					return a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1; 
+				}
+			);
+			$("#sel2").empty();         // 기존데이터 지우고
+			$("#sel2").append(sort); // 정렬된 데이터 넣어주고
+			//$("#sel2>option:first").attr("selected","selected"); // 처음껄로 selected
+			//-end select box sort-
+
+
+			
+		});
+
+		$( "#sel2tosel1" ).click(function() {
+			$("#sel2 option:selected").each(function(){
+				//console.log($(this).val());
+				$("#sel1").append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+				$(this).remove();
+			});
+
+			//-start select box sort-
+			var sort = $("#sel1>option").sort(
+				function(a,b) {
+					return a.value.toLowerCase() > b.value.toLowerCase() ? 1 : -1; 
+				}
+			);
+			$("#sel1").empty();         // 기존데이터 지우고
+			$("#sel1").append(sort); // 정렬된 데이터 넣어주고
+			//$("#sel1>option:first").attr("selected","selected"); // 처음껄로 selected
+			//-end select box sort-
+
+		});
+
+
+  });
+  </script>
+</head>
+<body>
+
+테스트
+<div style="border: 1px solid #c4c4b5;overflow:hidden;padding:10px 0 10px 0;width:100%">
+
+<!-- aaa -->
+	<div style="border: 1px solid #c4c4b5;
+float: left;
+width: 300px; margin-left:10px; ">
+		aaa
+		<div>
+		<select name="sel1"  id="sel1" multiple style="width: 200px;">
+			<option value="aaa">aaa
+			<option value="bbb">bbb
+			<option value="ccc">ccc
+			<option value="ddd">ddd
+			<option value="eee">eee
+			<option value="fff">fff
+		</select>
+		</div>
+	</div>
+<!-- //aaa -->
+
+<!-- 버튼 -->
+	<div style="float: left;
+margin-left:10px; ">
+			<div><input type="button" value=">>>" id="sel1tosel2"></div>
+			<div><input type="button" value="<<<" id="sel2tosel1"></div>
+	</div>
+<!-- //버튼 -->
+
+<!-- bbb -->
+	<div style="border: 1px solid #c4c4b5;
+float: left;
+width: 300px; margin-left:10px; ">
+		bbb
+		<div>
+		<select name="sel2"  id="sel2" multiple style="width: 200px;">
+			<option value="111">111
+			<option value="222">222
+			<option value="333">333
+			<option value="444">444
+			<option value="555">555
+			<option value="666">666
+		</select>
+		</div>
+	</div>
+<!-- //bbb -->
+
+</div>
+ 
+ 
+</body>
+</html>
